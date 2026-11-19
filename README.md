@@ -1,6 +1,6 @@
 # M365 & Entra ID Administration Scripts
 
-A collection of PowerShell scripts using **Microsoft Graph** to automate routine identity and Microsoft 365 administration tasks, reduce manual errors, and support license governance.
+A collection of PowerShell scripts using **Microsoft Graph** to automate routine identity and Microsoft 365 administration tasks across the user lifecycle, reduce manual errors, and support license governance.
 
 ## Scripts Included
 
@@ -14,10 +14,18 @@ A collection of PowerShell scripts using **Microsoft Graph** to automate routine
 * **Use Case:** Speeds up new-hire onboarding while maintaining identity security standards and handling per-user errors gracefully.
 * **Key Concepts:** Parameterized input (`-CsvPath`), `Import-Csv`, `foreach` loops, `PasswordProfile` (`ForceChangePasswordNextSignIn`), and `try / catch` error handling.
 
+### 3. `Disable-EntraUserOffboard.ps1`
+* **Purpose:** Disables a Microsoft Entra ID user account by UPN and revokes active sign-in sessions.
+* **Use Case:** Supports clean account offboarding by blocking access and invalidating active refresh tokens quickly.
+* **Key Concepts:** `Get-MgUser`, `Update-MgUser`, `Revoke-MgUserSignInSession`, input validation, and `try / catch` error handling.
+
+## Repository Hygiene
+* Includes a `.gitignore` file to keep local output artifacts (such as `.csv`, `.log`, and `.tmp` files) out of version control.
+
 ## Prerequisites
 * PowerShell 7+ (or Windows PowerShell 5.1)
 * **Microsoft Graph PowerShell SDK** (`Microsoft.Graph.Users`)
-* Appropriate Microsoft Entra ID permissions/scopes (`User.Read.All`, `Directory.Read.All`, or `User.ReadWrite.All` depending on the script)
+* Appropriate Microsoft Entra ID permissions/scopes (`User.Read.All`, `Directory.Read.All`, `User.ReadWrite.All`, or `Directory.ReadWrite.All` depending on the script)
 
 ## Disclaimer
 Test all scripts in a non-production or sandbox environment first and verify permissions before running them in production.
